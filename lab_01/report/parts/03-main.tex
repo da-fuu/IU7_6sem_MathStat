@@ -1,50 +1,52 @@
 \chapter{Теоретическая часть}
 \section{Формулы для вычисления величин $M_{max}$ , $M_{min}$, $R$, $\hat\mu$, $S^2$}
 
-Пусть $\vec{X}$ --- случайная выборка из генеральной совокупности $Х$, а $\vec{x} = (x_1, \dots, x_n)$ --- её реализация (выборка), где $n$ --- объём данной выборки.
+Пусть $\vec{X}$ --- случайная выборка из генеральной совокупности $X$, а $\vec{x} = (x_1, \dots, x_n)$ --- её реализация, где $n$ --- объём данной выборки.
 Расположим компоненты $x_i$, $i=\overline{1,n}$ в порядке неубывания, $i$-ый элемент полученной последовательности обозначим $x_{(i)}$:
 \begin{equation}
 	\label{eq:leq}
 	x_{(1)}~\leq~x_{(2)}~\leq~\dots~\leq~x_{(n)}
 \end{equation}
 
-Вариационным рядом, построенным по выборке $\vec{x} = (x_1, \dots, x_n)$, называют вектор $(x_{(1)}, \dots, x_{(n)})$.
+Вариационным рядом, построенным по выборке $\vec{x} = (x_1, \dots, x_n)$, называют последовательность $x_{(1)}, \dots, x_{(n)}$.
 
-Максимальное значение выборки $M_{max}$ рассчитывается по формуле (\ref{eq:max}); минимальное $M_{min}$ --- (\ref{eq:min}). Размах выборки $R$ рассчитывается по формуле (\ref{eq:diff}); оценка $\hat\mu$ математического ожидания M$X$ --- по формуле выборочного среднего (\ref{eq:mx}), оценка $S^2$ дисперсии D$X$ --- по формуле исправленной выборочной дисперсии (\ref{eq:dx}).
+Максимальное значение выборки $M_{max}$ рассчитывается по формуле (\ref{eq:max}); минимальное $M_{min}$ --- (\ref{eq:min}).
 \begin{equation}
 	\label{eq:max}
-	M_{\max} = x_{(n)} =  \underset{x_i \in \vec{x}}{max}~x_i
+	M_{\max} = x_{(n)} =  \max\{x_1,\dots,x_n\}
 \end{equation}
 \begin{equation}
 	\label{eq:min}
-	M_{\min} = x_{(1)} = \underset{x_i \in \vec{x}}{min}~x_i
+	M_{\min} = x_{(1)} = \min\{x_1,\dots,x_n\}
 \end{equation}
+
+Размах выборки $R$ рассчитывается по формуле (\ref{eq:diff}).
 \begin{equation}
 	\label{eq:diff}
-	R = M_{\max} - M_{\min}.
+	R = M_{\max} - M_{\min} = x_{(n)} - x_{(1)}
 \end{equation}
+
+Оценка $\hat\mu$ математического ожидания M$X$ рассчитывается по формуле выборочного среднего (\ref{eq:mx}), оценка $S^2$ дисперсии D$X$ --- по формуле исправленной выборочной дисперсии (\ref{eq:dx}).
 \begin{equation}
 	\label{eq:mx}
 	\hat\mu(\vec x) = \frac 1n \sum_{i=1}^n x_i
 \end{equation}
 \begin{equation}
 	\label{eq:dx}
-	S^2(\vec x) = \frac 1{n - 1} \sum_{i=1}^n (x_i - \hat\mu)^2
+	S^2(\vec x) = \frac 1{n - 1} \sum_{i=1}^n (x_i - \bar{x})^2
 \end{equation}
 
 \clearpage
 \section{Эмпирическая плотность и гистограмма}
 Пусть $\vec{x} = (x_1, \dots, x_n)$ --- реализация выборки из генеральной совокупности $X$, где $n$ --- объём данной выборки.
 
-Разделим отрезок $J = [x_{(1)}, x_{(n)}]$ на $m$ равновеликих промежутков по формуле (\ref{eq:ji}):
+Разделим отрезок $J = [x_{(1)}, x_{(n)}]$ на $m$ равновеликих промежутков по формуле (\ref{eq:j}):
 
+\begin{equation*}
+	J_i = [x_{(1)} + (i - 1) \cdot \Delta,\ x_{(1)} + i \cdot \Delta), i = \overline{1; m - 1},
+\end{equation*}
 \begin{equation}
-	\label{eq:ji}
-	J_i = [x_{(1)} + (i - 1) \cdot \Delta,\ x_{(1)} + i \cdot \Delta), i = \overline{1; m - 1}
-\end{equation}
-Последний промежуток определяется по формуле (\ref{eq:jm}):
-\begin{equation}
-	\label{eq:jm}
+	\label{eq:j}
 	J_{m} = [x_{(1)} + (m - 1) \cdot \Delta, x_{(n)}]
 \end{equation}
 
@@ -57,7 +59,7 @@
 Интервальным статистическим рядом выборки $\vec{x}$, называют таблицу \ref{table:row1}, в которой $n_i$ --- количество элементов выборки, принадлежащих $J_i$, $i=\overline{1,m}$
 
 \begin{table}[ht!]
-	\captionsetup{singlelinecheck = false, justification=centering}
+	\captionsetup{singlelinecheck = false, justification=raggedright}
 	\caption{Интервальный статистический ряд}
 	\centering
 	\label{table:row1}
@@ -76,13 +78,13 @@
 \begin{equation}
 	f_n(x) =
 	\begin{cases}
-		\frac{n_i}{n \Delta}, x \in J_i \\
-		0\ \ , x \not\in J              \\
+		\frac{n_i}{n \cdot \Delta}, x \in J_i \\
+		0\ \ , x \not\in J                    \\
 	\end{cases}
 \end{equation}
 
-где $J_i$ --- промежуток статистического ряда,
-$n_i$ --- количество элементов выборки, входящих в полуинтервал.
+где $J_i$ --- $i$-ый промежуток статистического ряда,
+$n_i$ --- количество элементов выборки, входящих в этот промежуток.
 
 \textbf{Гистограммой} называют график эмпирической функции плотности.
 
@@ -93,15 +95,16 @@ $n_i$ --- количество элементов выборки, входящи
 
 \textbf{Эмпирической функцией распределения}, отвечающей выборке $\vec x$, называют функцию $F_n$:
 \begin{equation}
-	F_n(x) = \frac{h(x, \vec x)}{n}
+	F_n(x) = \frac{\mu(x, \vec x)}{n}
 \end{equation}
 
-где $h(x, \vec x)$ --- число элементов выборки $\vec x$, которые имеют значение, меньшее $x$.
+где $\mu(x, \vec x) = \sum_{i=1}^n I\{x_i < x\}$ --- число элементов выборки $\vec x$, которые имеют значение, меньшее $x$, $I\{x_i < x\} = \begin{cases} 1, x_i < x, \\ 0, x_i \geq x, \end{cases}$ --- индикаторная функция.
+
 
 \chapter{Практическая часть}
 
 \section{Текст программы}
-Текст программы представлен в листинге \ref{lst}
+Текст программы представлен в листинге \ref{lst}.
 
 \begin{lstlisting}[label={lst}]
 clear all;
@@ -165,9 +168,7 @@ hold off;
 \clearpage
 
 \section{Результаты расчетов}
-\textbf{Индивидуальный вариант №11}
-
-Результаты расчетов для выборки приведены на формулах (\ref{eq:res_max}), (\ref{eq:res_min}), (\ref{eq:res_r}), (\ref{eq:res_mx}), (\ref{eq:res_dx}), (\ref{eq:res_m}).
+Результаты расчетов для выборки из индивидуального варианта приведены на формулах (\ref{eq:res_max}), (\ref{eq:res_min}), (\ref{eq:res_r}), (\ref{eq:res_mx}), (\ref{eq:res_dx}), (\ref{eq:res_m}).
 \begin{equation}
 	\label{eq:res_max}
 	M_{\max} = 0.010
