@@ -1,0 +1,11 @@
+FILE:= report
+
+.PHONY : report
+report:
+	pdflatex $(FILE).tex
+	pdflatex $(FILE).tex
+	make clean
+
+.PHONY : clean
+clean :
+	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.fls *.gz *.fdb_latexmk ./parts/*.aux
